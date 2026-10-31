@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SSD Fire & Safety Solutions provides fire protection systems, equipment, and safety services.">
+  <title>SSD Fire & Safety Solutions</title>
+
+  <style>
+    :root {
+      --navy: #102238;
+      --navy-light: #193651;
+      --red: #d9272e;
+      --text: #253448;
+      --muted: #647286;
+      --light: #f4f7fa;
+      --white: #ffffff;
+      --border: #e2e8ef;
+      --shadow: 0 14px 38px rgba(16, 34, 56, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      padding: 8px 0;
+      color: var(--white);
+      background: #0b1929;
+      font-size: 0.9rem;
+    }
+
+    .topbar-inner,
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .topbar p {
+      margin: 0;
+    }
+
+    .topbar a {
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border-radius: 10px;
+      color: var(--white);
+      background: var(--red);
+      font-weight: 800;
+    }
+
+    .brand-name {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .brand-tagline {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 11px 18px;
+      border: 2px solid var(--red);
+      border-radius: 7px;
+      color: var(--white);
+      background: var(--red);
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      border-color: #b81f26;
+      background: #b81f26;
+      transform: translateY(-1px);
+    }
+
+    .button-outline {
+      border-color: rgba(255, 255, 255, 0.75);
+      background: transparent;
+    }
+
+    .button-outline:hover {
+      border-color: var(--white);
+      color: var(--navy);
+      background: var(--white);
+    }
+
+    .hero {
+      padding: 92px 0;
+      color: var(--white);
+      background:
+        linear-gradient(110deg, rgba(12, 30, 49, 0.96), rgba(12, 30, 49, 0.76)),
+        linear-gradient(135deg, #193651, #d9272e);
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #ffcd75;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 750px;
+      margin: 0 0 18px;
+      font-size: clamp(2.4rem, 6vw, 4.3rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 0 26px;
+      color: #e3eaf0;
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 38px;
+      text-align: center;
+    }
+
+    .section-heading .eyebrow {
+      color: var(--red);
+    }
+
+    .section-heading h2 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      line-height: 1.2;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .about {
+      background: var(--light);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .about-copy h2 {
+      margin: 0 0 14px;
+      color: var(--navy);
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      line-height: 1.2;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+    }
+
+    .company-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .fact-card {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .fact-card strong {
+      display: block;
+      color: var(--red);
+      font-size: 1.45rem;
+    }
+
+    .fact-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .service-card h3 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 1.12rem;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .founder-section {
+      background: var(--light);
+    }
+
+    .founder-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.85fr) 1.4fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .founder-photo {
+      overflow: hidden;
+      min-height: 390px;
+      border-radius: 16px;
+      background: #e2e8ef;
+      box-shadow: var(--shadow);
+    }
+
+    .founder-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 390px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .founder-content .eyebrow {
+      color: var(--red);
+    }
+
+    .founder-content h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      line-height: 1.2;
+    }
+
+    .founder-title {
+      margin: 8px 0 20px;
+      color: var(--navy-light);
+      font-weight: 700;
+    }
+
+    .founder-content p:not(.eyebrow, .founder-title) {
+      color: var(--muted);
+    }
+
+    .contact {
+      color: var(--white);
+      background: var(--navy);
+      text-align: center;
+    }
+
+    .contact h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+    }
+
+    .contact p {
+      max-width: 650px;
+      margin: 0 auto 24px;
+      color: #d8e1e9;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .footer {
+      padding: 28px 0;
+      color: #d8e1e9;
+      background: #0b1929;
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    .floating-actions {
+      position: fixed;
+      right: 18px;
+      bottom: 22px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .float-button {
+      display: grid;
+      width: 50px;
+      height: 50px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .float-whatsapp {
+      background: #25a95a;
+    }
+
+    .float-phone {
+      background: var(--red);
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        font-size: 0.82rem;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .topbar-inner {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .nav-inner {
+        flex-wrap: wrap;
+        padding: 12px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-bottom: 10px;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hero {
+        padding: 68px 0;
+      }
+
+      .about-grid,
+      .founder-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .founder-photo,
+      .founder-photo img {
+        min-height: 320px;
+      }
+
+      .company-facts {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <p>Fire Protection &amp; Safety Solutions</p>
+      <a href="tel:+917780703282">Call SSD: +91 77807 03282</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="SSD Fire and Safety Solutions home">
+        <span class="brand-mark">SSD</span>
+        <span>
+          <span class="brand-name">SSD Fire &amp; Safety Solutions</span>
+          <span class="brand-tagline">Fire protection and safety services</span>
+        </span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#founder">Founder</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="button nav-cta" href="tel:+917780703282">Request a Call</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <p class="eyebrow">Established in 2017</p>
+        <h1>Fire Protection &amp; Safety Solutions You Can Rely On</h1>
+        <p>
+          SSD Fire &amp; Safety Solutions provides fire protection systems,
+          equipment, and services to help businesses and communities improve
+          fire safety.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="tel:+917780703282">Call +91 77807 03282</a>
+          <a class="button button-outline"
+             href="https://wa.me/917780703282"
+             target="_blank"
+             rel="noopener">
+            WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <p class="eyebrow">About SSD</p>
+          <h2>Supporting Safer Places Through Fire Safety</h2>
+          <p>
+            Established in 2017 by Mr. Gangolu Dasu, SSD Fire &amp; Safety
+            Solutions focuses on fire protection and safety solutions. The
+            company brings together technical knowledge and a commitment to
+            helping clients create safer environments.
+          </p>
+          <p>
+            Contact our team to discuss your fire safety requirements and the
+            services that may suit your facility.
+          </p>
+        </div>
+
+        <div class="company-facts">
+          <div class="fact-card">
+            <strong>2017</strong>
+            <span>Year established</span>
+          </div>
+          <div class="fact-card">
+            <strong>SSD</strong>
+            <span>Fire &amp; Safety Solutions</span>
+          </div>
+          <div class="fact-card">
+            <strong>Founder</strong>
+            <span>Mr. Gangolu Dasu</span>
+          </div>
+          <div class="fact-card">
+            <strong>Call / WhatsApp</strong>
+            <span>+91 77807 03282</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">What We Do</p>
+          <h2>Products &amp; Services</h2>
+          <p>
+            Contact SSD Fire &amp; Safety Solutions to discuss the right
+            equipment and services for your property or workplace.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Fire Hydrant Systems</h3>
+            <p>Fire hydrant system supply and installation services.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Automatic Fire Sprinkler Systems</h3>
+            <p>Automatic sprinkler solutions for fire protection.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Fire Alarm Systems</h3>
+            <p>Addressable and hybrid fire alarm system solutions.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Clean Agent &amp; Gas Suppression</h3>
+            <p>Fire suppression options, including FM-200, CO₂, and Novec 1230.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Fire Extinguishers</h3>
+            <p>Fire extinguisher supply and refilling services.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>PA &amp; Voice Evacuation</h3>
+            <p>Public address and voice evacuation system solutions.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Fire Safety Gear &amp; Accessories</h3>
+            <p>Fire safety equipment and accessories for your requirements.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Annual Maintenance Contracts</h3>
+            <p>Maintenance support for fire protection systems and equipment.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Fire Suppression Systems</h3>
+            <p>Fire suppression solutions for different applications.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="founder-section" id="founder">
+      <div class="container founder-grid">
+        <div class="founder-photo">
+          <img
+            src="images/Johnny.png"
+            alt="Mr. Gangolu Dasu, founder of SSD Fire &amp; Safety Solutions">
+        </div>
+
+        <div class="founder-content">
+          <p class="eyebrow">About the Founder</p>
+          <h2>Mr. Gangolu Dasu</h2>
+          <p class="founder-title">Founder of SSD Fire &amp; Safety Solutions</p>
+
+          <p>
+            Meet Mr. Gangolu Dasu, an entrepreneur whose journey from a humble
+            background reflects determination, hard work, and a commitment to
+            building a business with purpose. With a B.Tech in Electrical and
+            Electronics Engineering, he brings a strong technical foundation
+            to the fire and safety industry.
+          </p>
+
+          <p>
+            In 2017, Mr. Dasu established SSD Fire &amp; Safety Solutions,
+            beginning a journey focused on providing fire protection and
+            safety solutions. Guided by his engineering background and
+            entrepreneurial spirit, he has worked to grow the company and
+            support safer environments for its clients.
+          </p>
+
+          <p>
+            His story is a reminder that ambition, persistence, and a
+            willingness to learn can help turn a modest beginning into a
+            meaningful enterprise.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <p class="eyebrow">Contact SSD</p>
+        <h2>Talk to Us About Your Fire Safety Needs</h2>
+        <p>
+          Call or message SSD Fire &amp; Safety Solutions to discuss products,
+          services, or a callback.
+        </p>
+        <div class="contact-actions">
+          <a class="button" href="tel:+917780703282">Call +91 77807 03282</a>
+          <a class="button button-outline"
+             href="https://wa.me/917780703282"
+             target="_blank"
+             rel="noopener">
+            WhatsApp +91 77807 03282
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 SSD Fire &amp; Safety Solutions. All rights reserved.</p>
+      <p>Established 2017 | Founder: Mr. Gangolu Dasu</p>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="Quick contact links">
+    <a class="float-button float-whatsapp"
+       href="https://wa.me/917780703282"
+       target="_blank"
+       rel="noopener"
+       aria-label="Chat with SSD on WhatsApp">W</a>
+    <a class="float-button float-phone"
+       href="tel:+917780703282"
+       aria-label="Call SSD">☎</a>
+  </div>
+</body>
+</html>

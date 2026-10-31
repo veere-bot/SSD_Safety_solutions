@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="SSD Fire&Safety Solutions provides fire protection, detection, and safety services for commercial and industrial facilities."
+  >
+  <title>SSD Fire&Safety Solutions | Fire Protection & Safety</title>
+  <style>
+    :root {
+      --navy: #101b2c;
+      --navy-light: #1b2c43;
+      --orange: #ed672e;
+      --orange-dark: #d9501b;
+      --text: #263244;
+      --muted: #687386;
+      --light: #f4f6f8;
+      --white: #fff;
+      --border: #e4e8ed;
+      --shadow: 0 16px 40px rgba(16, 27, 44, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--navy);
+      color: #d9e0e9;
+      font-size: 13px;
+      padding: 9px 0;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .topbar strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--navy);
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      line-height: 1.15;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 45px;
+      height: 45px;
+      color: var(--white);
+      background: var(--orange);
+      border-radius: 10px;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .brand-name {
+      font-size: 17px;
+    }
+
+    .brand-name span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      color: #344054;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 5px;
+      background: var(--orange);
+      color: var(--white);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .button:hover {
+      background: var(--orange-dark);
+      transform: translateY(-1px);
+    }
+
+    .button-dark {
+      background: var(--navy);
+    }
+
+    .button-dark:hover {
+      background: var(--navy-light);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--navy);
+      cursor: pointer;
+      font-size: 25px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 92px;
+      color: var(--white);
+      background:
+        radial-gradient(ellipse at 78% 35%, rgba(237, 103, 46, 0.29), transparent 32%),
+        linear-gradient(112deg, #101b2c 0%, #172a41 58%, #22364b 100%);
+    }
+
+    .hero::after {
+      position: absolute;
+      top: -110px;
+      right: -140px;
+      width: 540px;
+      height: 540px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      content: "";
+      box-shadow:
+        0 0 0 45px rgba(255, 255, 255, 0.025),
+        0 0 0 95px rgba(255, 255, 255, 0.025);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero .eyebrow {
+      color: #ff9a6d;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.15;
+    }
+
+    h1 {
+      max-width: 700px;
+      margin-bottom: 22px;
+      font-size: clamp(38px, 6vw, 64px);
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #d2dbe6;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 32px;
+    }
+
+    .hero .button-dark {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: transparent;
+    }
+
+    .hero .button-dark:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 44px;
+      color: #d2dbe6;
+      font-size: 13px;
+    }
+
+    .hero-note span::before {
+      margin-right: 8px;
+      color: #ff9a6d;
+      content: "—";
+    }
+
+    .trust-strip {
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .trust-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 23px 0;
+    }
+
+    .trust-item {
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .trust-item span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    section {
+      padding: 86px 0;
+    }
+
+    .section-heading {
+      max-width: 660px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 14px;
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 43px);
+      letter-spacing: -1.2px;
+    }
+
+    .section-heading p,
+    .about-copy p {
+      color: var(--muted);
+    }
+
+    .services {
+      background: var(--light);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      min-height: 230px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-number {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background: #fff0e9;
+      color: var(--orange-dark);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .service-card h3 {
+      margin-bottom: 11px;
+      color: var(--navy);
+      font-size: 19px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .about-panel {
+      position: relative;
+      min-height: 355px;
+      overflow: hidden;
+      padding: 38px;
+      border-radius: 10px;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(237, 103, 46, 0.6), transparent 27%),
+        linear-gradient(135deg, #17283d, #101b2c);
+      color: var(--white);
+    }
+
+    .about-panel::after {
+      position: absolute;
+      right: -45px;
+      bottom: -90px;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      content: "";
+      box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.04);
+    }
+
+    .about-panel-content {
+      position: relative;
+      z-index: 1;
+      max-width: 300px;
+    }
+
+    .about-panel strong {
+      display: block;
+      margin-bottom: 12px;
+      color: #ff9a6d;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .about-panel h3 {
+      margin-bottom: 15px;
+      font-size: 31px;
+    }
+
+    .about-panel p {
+      color: #d2dbe6;
+    }
+
+    .about-copy h2 {
+      margin-bottom: 18px;
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 42px);
+      letter-spacing: -1px;
+    }
+
+    .about-copy p + p {
+      margin-top: 13px;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 12px;
+      margin: 24px 0 28px;
+      list-style: none;
+    }
+
+    .check-list li {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .check-list li::before {
+      margin-right: 10px;
+      color: var(--orange);
+      content: "✓";
+      font-weight: 800;
+    }
+
+    .process {
+      background: var(--light);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .process-step {
+      padding: 24px 20px;
+      border-top: 3px solid var(--orange);
+      background: var(--white);
+    }
+
+    .process-step span {
+      display: block;
+      margin-bottom: 15px;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .process-step h3 {
+      margin-bottom: 9px;
+      color: var(--navy);
+      font-size: 18px;
+    }
+
+    .process-step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact {
+      padding: 82px 0;
+      color: var(--white);
+      background: var(--navy);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .contact-copy h2 {
+      margin-bottom: 16px;
+      font-size: clamp(31px, 4vw, 44px);
+      letter-spacing: -1px;
+    }
+
+    .contact-copy p {
+      max-width: 430px;
+      color: #c4cfdd;
+    }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 26px;
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--white);
+      color: var(--text);
+      outline: none;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--orange);
+    }
+
+    .field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-message {
+      grid-column: 1 / -1;
+      color: #267347;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 24px 0;
+      background: #0b1421;
+      color: #aeb9c8;
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        gap: 15px;
+        font-size: 13px;
+      }
+
+      .nav-links .button {
+        min-height: 42px;
+        padding: 0 14px;
+      }
+
+      .about-grid,
+      .contact-grid {
+        gap: 34px;
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .topbar-inner {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .topbar-inner span:last-child {
+        display: none;
+      }
+
+      .navbar {
+        min-height: 70px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 20px 20px;
+        border-bottom: 1px solid var(--border);
+        background: var(--white);
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links a {
+        padding: 11px 0;
+      }
+
+      .nav-links .button {
+        margin-top: 8px;
+      }
+
+      .hero {
+        padding: 76px 0;
+      }
+
+      .hero-note {
+        gap: 10px;
+        flex-direction: column;
+      }
+
+      .trust-inner {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      section {
+        padding: 66px 0;
+      }
+
+      .service-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-panel {
+        min-height: 290px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+
+      .field-full {
+        grid-column: auto;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><strong>Fire protection. Built around safety.</strong></span>
+      <span>Commercial and industrial fire &amp; safety solutions</span>
+    </div>
+  </div>
+
+  <header>
+    <nav class="container navbar" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="SSD Fire and Safety Solutions home">
+        <span class="brand-mark">SSD</span>
+        <span class="brand-name">
+          SSD Fire&amp;Safety
+          <span>Solutions</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#process">Our approach</a>
+        <a class="button" href="#contact">Request a consultation</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Fire protection and safety services</span>
+          <h1>Protecting people, property, and peace of mind.</h1>
+          <p>
+            SSD Fire&amp;Safety Solutions helps businesses plan, install, and maintain
+            practical fire protection systems for safer facilities.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#contact">Talk to our team</a>
+            <a class="button button-dark" href="#services">Explore our services</a>
+          </div>
+          <div class="hero-note">
+            <span>Thoughtful safety planning</span>
+            <span>Reliable system support</span>
+            <span>Solutions for your facility</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-inner">
+        <div class="trust-item">
+          Risk-conscious planning
+          <span>Solutions shaped around your site</span>
+        </div>
+        <div class="trust-item">
+          End-to-end support
+          <span>From assessment to ongoing care</span>
+        </div>
+        <div class="trust-item">
+          Safety-first service
+          <span>Focused on people and property</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">What we do</span>
+          <h2>Fire safety solutions for every stage.</h2>
+          <p>
+            From reviewing your requirements to supporting installed equipment,
+            we help make fire safety easier to manage.
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <span class="service-number">01</span>
+            <h3>Fire detection systems</h3>
+            <p>
+              Detection and alarm solutions designed to help identify hazards
+              and alert occupants promptly.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-number">02</span>
+            <h3>Fire suppression systems</h3>
+            <p>
+              System planning and installation support for suitable fire
+              suppression applications.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-number">03</span>
+            <h3>Fire extinguishers</h3>
+            <p>
+              Guidance on extinguisher selection, placement, inspection, and
+              routine servicing.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-number">04</span>
+            <h3>Fire safety audits</h3>
+            <p>
+              Site reviews to help identify safety gaps, maintenance needs, and
+              practical next steps.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-number">05</span>
+            <h3>Training and preparedness</h3>
+            <p>
+              Support for workplace awareness, emergency readiness, and
+              responsible equipment use.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-number">06</span>
+            <h3>Maintenance and support</h3>
+            <p>
+              Ongoing inspection and service support to help keep safety
+              equipment ready for use.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <div class="about-panel-content">
+            <strong>SSD Fire&amp;Safety Solutions</strong>
+            <h3>A safer workplace starts with a clear plan.</h3>
+            <p>
+              Practical fire safety support tailored to the needs of your
+              building, team, and operations.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <span class="eyebrow">About us</span>
+          <h2>Safety solutions with your site in mind.</h2>
+          <p>
+            Every facility has

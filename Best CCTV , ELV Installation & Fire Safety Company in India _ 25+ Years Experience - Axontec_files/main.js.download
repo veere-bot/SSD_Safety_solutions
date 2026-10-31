@@ -1,0 +1,113 @@
+$(window).scroll(function(){
+    if ($(this).scrollTop() > 120) {
+        $('.header').addClass('fixed');
+    } else {
+        $('.header').removeClass('fixed');
+    }
+});
+
+
+$('.tab').hide();
+$('.tab.crawler-tab-1').show();
+$('.crawler-tabs li').click(function() {
+  var selClass = $(this).attr('class').split(/\s+/);
+  console.log(selClass);
+  $('.tab').hide();
+  $('.crawler-tabs li').removeClass('active');
+  $(this).addClass('active');
+  $('.crawler-'+selClass).show();
+});
+
+
+
+$(document).ready(function(){
+
+  $('ul.tabs-wrap li').click(function(){
+    var tab_id = $(this).attr('data-tab');
+    console.log("Tab clicked:", tab_id);
+
+    if (!$(this).hasClass('current')) {
+      $('ul.tabs-wrap li').removeClass('current');
+      $('.tab-content').removeClass('current');
+
+      $(this).addClass('current');
+      $("#" + tab_id).addClass('current');
+    }
+  });
+
+});
+
+
+
+
+
+
+
+$(document).ready(function(){
+    $('.client-group').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [{
+            breakpoint: 1199,
+            settings: {
+                slidesToShow: 3
+            }
+        },{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 2
+            }
+        }, {
+            breakpoint: 767,
+            settings: {
+                slidesToShow: 1
+            }
+        }]
+    });
+});
+
+
+    $(document).ready(function(){
+      $('.serv-slider').slick({
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay:true,
+    autoplaySpeed: 2000,
+  arrows:false,
+    infinite: true,
+      responsive: [{
+            breakpoint: 1199,
+            settings: {
+                slidesToShow: 3
+            }
+        },{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 2
+            }
+        }, {
+            breakpoint: 767,
+            settings: {
+                slidesToShow: 1
+            }
+        }]
+
+      });
+    });
+
+
+$(document).ready(function(){
+   $('.home-baner-slider').slick({
+  infinite: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows:true,
+  autoplay: true
+
+});
+});

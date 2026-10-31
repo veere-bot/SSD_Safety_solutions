@@ -1,0 +1,80 @@
+.founder-section {
+  padding: 80px 0;
+  background: #f4f7fa;
+}
+
+.founder-container {
+  width: min(1100px, 90%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) 1.4fr;
+  align-items: center;
+  gap: 52px;
+}
+
+.founder-photo {
+  overflow: hidden;
+  min-height: 390px;
+  border-radius: 16px;
+  background: #e2e8ef;
+  box-shadow: 0 14px 38px rgba(16, 34, 56, 0.12);
+}
+
+.founder-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 390px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.founder-eyebrow {
+  margin: 0 0 8px;
+  color: #d9272e;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.founder-content h2 {
+  margin: 0 0 8px;
+  color: #102238;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  line-height: 1.2;
+}
+
+.founder-content h3 {
+  margin: 18px 0 0;
+  color: #193651;
+  font-size: 1.35rem;
+}
+
+.founder-title {
+  margin: 2px 0 22px;
+  color: #647286;
+  font-weight: 700;
+}
+
+.founder-content > p:not(.founder-eyebrow, .founder-title) {
+  margin: 0 0 16px;
+  color: #536276;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  .founder-section {
+    padding: 56px 0;
+  }
+
+  .founder-container {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .founder-photo,
+  .founder-photo img {
+    min-height: 320px;
+  }
+}

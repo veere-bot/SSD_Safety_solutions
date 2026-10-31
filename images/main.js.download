@@ -1,0 +1,309 @@
+/**
+ * Pro Delta Fire Safety Systems - Main Vanilla JavaScript
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* -------------------------------------------------------------
+   * 1. Sticky Navigation Scroll Listener
+   * ------------------------------------------------------------- */
+  const header = document.getElementById('site-header');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        header.classList.add('nav--scrolled');
+      } else {
+        header.classList.remove('nav--scrolled');
+      }
+    });
+  }
+
+  /* -------------------------------------------------------------
+   * 2. Mobile Menu Drawer Toggle
+   * ------------------------------------------------------------- */
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('is-active');
+      mobileToggle.classList.toggle('is-open');
+    });
+
+    // Mobile dropdown toggle inside menu
+    const dropdownItem = navMenu.querySelector('.nav__item--dropdown');
+    if (dropdownItem) {
+      const dropdownLink = dropdownItem.querySelector('.nav__link');
+      if (dropdownLink) {
+        dropdownLink.addEventListener('click', (e) => {
+          if (window.innerWidth <= 1100) {
+            e.preventDefault();
+            dropdownItem.classList.toggle('is-open');
+          }
+        });
+      }
+    }
+  }
+
+  /* -------------------------------------------------------------
+   * Interactive Hero System Protection Matrix Tabs
+   * ------------------------------------------------------------- */
+  const heroTabBtns = document.querySelectorAll('.hero-tab-btn');
+  const heroTabPanes = document.querySelectorAll('.tab-pane');
+
+  if (heroTabBtns.length > 0 && heroTabPanes.length > 0) {
+    heroTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetTab = btn.getAttribute('data-tab');
+
+        heroTabBtns.forEach(b => b.classList.remove('active'));
+        heroTabPanes.forEach(p => {
+          p.classList.remove('active');
+          p.style.display = 'none';
+        });
+
+        btn.classList.add('active');
+        const activePane = document.getElementById('tab-' + targetTab);
+        if (activePane) {
+          activePane.classList.add('active');
+          activePane.style.display = 'block';
+        }
+      });
+    });
+  }
+
+  /* -------------------------------------------------------------
+   * Hero Carousel Slider (Auto-play, Prev/Next, Dots)
+   * ------------------------------------------------------------- */
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.carousel-indicators .dot');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+
+  if (slides.length > 0) {
+    let currentSlide = 0;
+    let slideTimer = null;
+
+    const goToSlide = (index) => {
+      slides[currentSlide].classList.remove('active');
+      if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+
+      currentSlide = (index + slides.length) % slides.length;
+
+      slides[currentSlide].classList.add('active');
+      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+    };
+
+    const nextSlide = () => goToSlide(currentSlide + 1);
+    const prevSlide = () => goToSlide(currentSlide - 1);
+
+    const startAutoPlay = () => {
+      stopAutoPlay();
+      slideTimer = setInterval(nextSlide, 5000);
+    };
+
+    const stopAutoPlay = () => {
+      if (slideTimer) clearInterval(slideTimer);
+    };
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        startAutoPlay();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        startAutoPlay();
+      });
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+        startAutoPlay();
+      });
+    });
+
+    const carouselSection = document.getElementById('hero-carousel');
+    if (carouselSection) {
+      carouselSection.addEventListener('mouseenter', stopAutoPlay);
+      carouselSection.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    startAutoPlay();
+  }
+
+  /* -------------------------------------------------------------
+   * 3. Stat Counter Count-Up Animation (IntersectionObserver)
+   * ------------------------------------------------------------- */
+  const statNumbers = document.querySelectorAll('.stat-number');
+  if (statNumbers.length > 0) {
+    const animateStats = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+          const suffixEl = el.querySelector('.stat-suffix');
+          const suffix = suffixEl ? suffixEl.outerHTML : '';
+
+          let start = 0;
+          const duration = 2000;
+          const stepTime = 30;
+          const steps = duration / stepTime;
+          const increment = target / steps;
+
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+              el.innerHTML = target + suffix;
+              clearInterval(timer);
+            } else {
+              el.innerHTML = Math.floor(start) + suffix;
+            }
+          }, stepTime);
+
+          observer.unobserve(el);
+        }
+      });
+    };
+
+    const statsObserver = new IntersectionObserver(animateStats, { threshold: 0.5 });
+    statNumbers.forEach(stat => statsObserver.observe(stat));
+  }
+
+  /* -------------------------------------------------------------
+   * 4. Scroll Reveal Animations with Staggered Delays
+   * ------------------------------------------------------------- */
+  const cards = document.querySelectorAll('.card, .industry-card, .section-heading');
+  cards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 450ms cubic-bezier(0.16, 1, 0.3, 1)';
+  });
+
+  const revealOnScroll = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  const revealObserver = new IntersectionObserver(revealOnScroll, { threshold: 0.1 });
+  cards.forEach(card => revealObserver.observe(card));
+
+  /* -------------------------------------------------------------
+   * 5. Single Unified AJAX Contact Form Submission Handler (With Auto-Hiding Thank You)
+   * ------------------------------------------------------------- */
+  const contactForms = document.querySelectorAll('form[action*="contact-handler.php"]');
+  contactForms.forEach(form => {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (form.dataset.submitting === 'true') {
+        return false;
+      }
+      form.dataset.submitting = 'true';
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerText : 'Submit Inquiry';
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Sending Inquiry...';
+      }
+
+      const feedbackContainer = form.querySelector('#contact-form-feedback');
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (feedbackContainer) {
+            if (data.status === 'success') {
+              feedbackContainer.innerHTML = '<div class="alert-msg-box" style="padding:14px; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; border-radius:6px; font-weight:600; opacity:1; transition:opacity 500ms ease;">✓ ' + data.message + '</div>';
+              form.reset();
+
+              // Auto-hide thank you message after 5 seconds
+              setTimeout(() => {
+                const msgBox = feedbackContainer.querySelector('.alert-msg-box');
+                if (msgBox) {
+                  msgBox.style.opacity = '0';
+                  setTimeout(() => {
+                    feedbackContainer.innerHTML = '';
+
+                    // If form is inside a popup modal, auto-close modal smoothly after thank you vanishes
+                    const modalOverlay = form.closest('.modal-overlay');
+                    if (modalOverlay && modalOverlay.classList.contains('is-active')) {
+                      modalOverlay.classList.remove('is-active');
+                      document.body.style.overflow = '';
+                      setTimeout(() => {
+                        modalOverlay.style.display = 'none';
+                      }, 250);
+                    }
+                  }, 500);
+                }
+              }, 5000);
+
+            } else {
+              feedbackContainer.innerHTML = '<div class="alert-msg-box" style="padding:14px; background:#fef2f2; color:#991b1b; border:1px solid #fecaca; border-radius:6px; font-weight:600; opacity:1; transition:opacity 500ms ease;">⚠️ ' + data.message + '</div>';
+            }
+          } else {
+            let alertBox = form.querySelector('.form-alert');
+            if (!alertBox) {
+              alertBox = document.createElement('div');
+              alertBox.className = 'form-alert';
+              form.prepend(alertBox);
+            }
+
+            alertBox.style.display = 'block';
+            alertBox.style.opacity = '1';
+            alertBox.style.transition = 'opacity 500ms ease';
+
+            if (data.status === 'success') {
+              alertBox.className = 'form-alert form-alert--success';
+              alertBox.innerText = data.message || 'Thank you! Your inquiry has been sent successfully.';
+              form.reset();
+
+              // Auto-hide alert box after 5 seconds
+              setTimeout(() => {
+                alertBox.style.opacity = '0';
+                setTimeout(() => {
+                  alertBox.style.display = 'none';
+                }, 500);
+              }, 5000);
+
+            } else {
+              alertBox.className = 'form-alert form-alert--error';
+              alertBox.innerText = data.message || 'There was an error processing your submission.';
+            }
+          }
+        })
+        .catch(err => {
+          if (feedbackContainer) {
+            feedbackContainer.innerHTML = '<div style="padding:14px; background:#fef2f2; color:#991b1b; border:1px solid #fecaca; border-radius:6px; font-weight:600;">⚠️ An error occurred. Please call us directly.</div>';
+          }
+        })
+        .finally(() => {
+          form.dataset.submitting = 'false';
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
+          }
+        });
+    });
+  });
+
+});
